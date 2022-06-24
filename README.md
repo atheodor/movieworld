@@ -15,6 +15,6 @@ Docker CLI, Node, PHP 7.1+, Composer
 #### Steps:
 - run `composer install`
 - run `npm install`
+- run `npm run watch`
 - run `docker-composer up -d`
-- run `npm run watch` (optional, vue should be already compiled)
 - project will run at http://localhost:8000/
