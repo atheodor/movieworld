@@ -4,13 +4,6 @@
     <list default="true" id="f305fe16-8d2d-4e27-91ab-6e8fd8432bd0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/data/global/pg_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/pg_stat_tmp/db_0.stat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/pg_stat_tmp/db_13457.stat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/pg_stat_tmp/db_16384.stat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/pg_stat_tmp/global.stat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/data/pg_wal/000000010000000000000001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/postmaster.pid" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +188,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1656094282977</updated>
-      <workItem from="1656094284420" duration="9601000" />
+      <workItem from="1656094284420" duration="9727000" />
     </task>
     <servers />
   </component>
