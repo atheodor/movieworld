@@ -26,4 +26,4 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 .idea
 .DS_Store
-**/.DS_Store
+/docker/db/*
