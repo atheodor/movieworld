@@ -9,12 +9,12 @@ MovieWorld is a test application part of a technical assignment that mockups a s
 - Authentication System (Login / Register / Logout)
 
 ## How to use:
-###Requirements:
+### Requirements:
 1) Docker
 2) Node
 3) Composer
 
-###Steps:
+### Steps:
 1) run `composer install`
 2) run `npm install`
 3) run `npm run watch`
