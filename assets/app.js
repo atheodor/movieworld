@@ -6,10 +6,11 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+import './styles/app.scss';
 
-// start the Stimulus application
-import './bootstrap';
+const $ = require('jquery');
+
+require('bootstrap');
 
 import Vue from 'vue';
 import App from './App.vue';
@@ -18,3 +19,5 @@ new Vue({
     el: "#app",
     components: {App}
 })
+
+$('#datesFilter').prop('checked', true);

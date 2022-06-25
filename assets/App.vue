@@ -1,7 +1,6 @@
 <template>
-  <div class="main-container">
-    <h2>Movie World</h2>
-    <button @click="counter++">Click me {{ counter }}</button>
+  <div class="main-app-container">
+<!--    <button @click="counter++">Click me {{ counter }}</button>-->
   </div>
 </template>
 

@@ -3,9 +3,61 @@
 {% block title %}Welcome to MovieWorld!{% endblock %}
 
 {% block body %}
-
-<div id="app">
-    <App/>
-</div>
+    <div class="top-bar">
+        <h1>Movie World</h1>
+        {% if app.user %}
+            <div>
+                Welcome Back <a href="/">{{ app.user.name }}</a> | <a href="/logout">Logout</a>
+            </div>
+        {% else %}
+            <div class="top-bar-buttons">
+                <a class="log-in" href="/login">Log in</a> or <a href="/register" class="sign-up">Sign Up</a>
+            </div>
+        {% endif %}
+    </div>
+    <div class="movie-count">
+        Found {{ movie_count ?? 0 }} movies
+    </div>
+    <div class="dual-column-container">
+        <div class="left">
+            {% for movie in movies %}
+                <div class="movie-container">
+                    <div class="top">
+                        <div class="title">{{ movie.title }}</div>
+                        <div class="posted-at">Posted {{ movie.getDatePublished()|date("m/d/Y") }}</div>
+                    </div>
+                    <div class="mid">
+                        {{ movie.description }}
+                    </div>
+                    <div class="bottom">
+                        <div class="rating">
+                            {{ movie.likes ?? 0 }} likes | {{ movie.hates ?? 0 }} hates
+                        </div>
+                        <div class="posted-by">
+                            Posted by <a href="/user/{{ movie.getAddedBy().id }}">{{ (app.user == null or movie.getAddedBy().id != app.user.id) ? movie.getAddedBy().getName() : 'You' }}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="right">
+            {% if app.user %}
+                <div class="add-movie">
+                    <a href="/new-movie">
+                        New Movie
+                    </a>
+                </div>
+            {% endif %}
+            <div class="filters">
+                <div class="sort">Sort by:</div>
+                <div class="likes"><label for="likesFilter">Likes</label><input id="likesFilter" type="checkbox"/></div>
+                <div class="hates"><label for="hatesFilter">Hates</label><input id="hatesFilter" type="checkbox"/></div>
+                <div class="dates"><label for="datesFilter">Dates</label><input id="datesFilter" type="checkbox"/></div>
+            </div>
+        </div>
+    </div>
+    <div id="app">
+        <App/>
+    </div>
 
 {% endblock %}

@@ -1,0 +1,131 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    font-family: Coustard;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    background-color: white;
+    padding: 100px;
+    a {
+        text-decoration: none;
+    }
+    .top-bar {
+        cursor: default;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        display:flex;
+        flex-direction: row;
+        font-size: 15px;
+        .top-bar-buttons {
+            a {
+                font-size: 20px;
+                font-family: Coustard;
+                cursor: pointer;
+            }
+            .log-in {
+                border: none;
+                background: transparent;
+                color: dodgerblue;
+                margin-right: 10px;
+            }
+            .sign-up {
+                margin-left: 10px;
+                padding: 5px 20px;
+                border-color: blue;
+                border-radius: 15px;
+                color: white;
+                background: dodgerblue;
+            }
+        }
+    }
+    .movie-count {
+        margin-top: 20px;
+    }
+    .dual-column-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 10px;
+        .left {
+            .movie-container {
+                border: 5px solid black;
+                border-radius: 15px;
+                padding: 8px 15px;
+                margin-bottom: 15px;
+                .top {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 5px;
+                    .title {
+                        font-weight: bold;
+                        font-size: 20px;
+                    }
+
+                    .posted-by {
+
+                    }
+                }
+                .bottom {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: 10px;
+                }
+            }
+        }
+        .right {
+            margin-left: 10px;
+            .add-movie {
+                margin-bottom: 10px;
+                a {
+                    background-color: green;
+                    color: white;
+                    width: 100px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border: 5px solid black;
+                    border-radius: 15px;
+                    padding: 8px 0px;
+                }
+            }
+            .filters {
+                background-color: lightgrey;
+                width: 100px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 5px solid black;
+                border-radius: 15px;
+                font-size: 18px;
+                div {
+                    border-bottom: 3px solid darkslateblue;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    padding: 5px;
+                    color: dodgerblue;
+                    &.sort {
+                        color: black;
+                    }
+                    input {
+                        margin-left: 10px;
+                        cursor: pointer;
+                    }
+                    label {
+                        cursor: pointer;
+                        user-select: none;
+                    }
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+}
