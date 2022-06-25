@@ -8,18 +8,19 @@ MovieWorld is a test application part of a technical assignment that mockups a s
 - Postgre Dockerized Database
 - Authentication System (Login / Register / Logout)
 
->## How to use:
->###Requirements:
->>1) Docker
->>2) Node
->>4) Composer
->###Steps:
->>1) run `composer install`
->>2) run `npm install`
->>3) run `npm run watch`
->>4) run `docker-composer up -d`
->>5) run `docker-compose exec php bin/console doctrine:migrations:migrate` to insert data to the database
->>6) project can be accessed at http://localhost:8000/
+## How to use:
+###Requirements:
+1) Docker
+2) Node
+3) Composer
+
+###Steps:
+1) run `composer install`
+2) run `npm install`
+3) run `npm run watch`
+4) run `docker-composer up -d`
+5) run `docker-compose exec php bin/console doctrine:migrations:migrate` to insert data to the database
+6) project can be accessed at http://localhost:8000/
 
 
 ### Issues:
