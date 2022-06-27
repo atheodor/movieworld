@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Coustard" />
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<div class="top-bar">
+    <h1>Movie World</h1>
+    {% if app.user %}
+        <div>
+            Welcome Back <a href="/">{{ app.user.name }}</a> | <a href="/logout">Logout</a>
+        </div>
+    {% else %}
+        <div class="top-bar-buttons">
+            <a class="log-in" href="/login">Log in</a> or <a href="/register" class="sign-up">Sign Up</a>
+        </div>
+    {% endif %}
+</div>
+{% block body %}{% endblock %}
+</body>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Coustard" />
 </html>

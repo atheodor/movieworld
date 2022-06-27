@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add new Movie{% endblock %}
+
+{% block javascripts %}{% endblock %}
+
+{% block body %}
+    <div class="new-movie-form">
+        <h3>
+            Add New Movie
+        </h3>
+
+        {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+        <button type="submit">
+            Submit Movie
+        </button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

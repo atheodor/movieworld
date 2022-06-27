@@ -7,6 +7,9 @@ MovieWorld is a test application part of a technical assignment that mockups a s
 - Vue Sass Implementation
 - Postgre Dockerized Database
 - Authentication System (Login / Register / Logout)
+- Add new Movie
+- Index Page Styled based on mockup template
+- Restricts Add Movie route from unauthorized users
 
 ## How to use:
 ### Requirements:
@@ -19,7 +22,7 @@ MovieWorld is a test application part of a technical assignment that mockups a s
 2) run `npm install`
 3) run `npm run watch`
 4) run `docker-composer up -d`
-5) run `docker-compose exec php bin/console doctrine:migrations:migrate` to insert data to the database
+5) run `docker-compose exec php bin/console doctrine:migrations:migrate` to migrate the database schema
 6) project can be accessed at http://localhost:8000/
 
 

@@ -3,20 +3,8 @@
 {% block title %}Welcome to MovieWorld!{% endblock %}
 
 {% block body %}
-    <div class="top-bar">
-        <h1>Movie World</h1>
-        {% if app.user %}
-            <div>
-                Welcome Back <a href="/">{{ app.user.name }}</a> | <a href="/logout">Logout</a>
-            </div>
-        {% else %}
-            <div class="top-bar-buttons">
-                <a class="log-in" href="/login">Log in</a> or <a href="/register" class="sign-up">Sign Up</a>
-            </div>
-        {% endif %}
-    </div>
     <div class="movie-count">
-        Found {{ movie_count ?? 0 }} movies
+        Found {{ movies | length }} movies
     </div>
     <div class="dual-column-container">
         <div class="left">
@@ -43,7 +31,7 @@
         <div class="right">
             {% if app.user %}
                 <div class="add-movie">
-                    <a href="/new-movie">
+                    <a href="/add-movie">
                         New Movie
                     </a>
                 </div>

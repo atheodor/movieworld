@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MovieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,14 +41,14 @@ class Movie
     private $date_published;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\OneToMany(targetEntity=Vote::class, mappedBy="movie_id", orphanRemoval=true)
      */
-    private $likes;
+    private $votes;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $hates;
+    public function __construct()
+    {
+        $this->votes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -101,26 +103,32 @@ class Movie
         return $this;
     }
 
-    public function getLikes(): ?int
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
     {
-        return $this->likes;
+        return $this->votes;
     }
 
-    public function setLikes(?int $likes): self
+    public function addVote(Vote $vote): self
     {
-        $this->likes = $likes;
+        if (!$this->votes->contains($vote)) {
+            $this->votes[] = $vote;
+            $vote->setMovieId($this);
+        }
 
         return $this;
     }
 
-    public function getHates(): ?int
+    public function removeVote(Vote $vote): self
     {
-        return $this->hates;
-    }
-
-    public function setHates(?int $hates): self
-    {
-        $this->hates = $hates;
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getMovieId() === $this) {
+                $vote->setMovieId(null);
+            }
+        }
 
         return $this;
     }
