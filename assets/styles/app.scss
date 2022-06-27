@@ -7,6 +7,8 @@ body {
     font-variant: normal;
     background-color: white;
     padding: 100px;
+    max-width: 1200px;
+    margin: auto;
     a {
         text-decoration: none;
     }
@@ -18,6 +20,9 @@ body {
         display:flex;
         flex-direction: row;
         font-size: 15px;
+        .title {
+            color: black;
+        }
         .top-bar-buttons {
             a {
                 font-size: 20px;
