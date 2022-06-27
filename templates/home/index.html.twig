@@ -2,6 +2,13 @@
 
 {% block title %}Welcome to MovieWorld!{% endblock %}
 
+ {% block javascripts %}
+     {{ parent() }}
+    <script>
+        const activeFilter = '{{ filter ?? 'dates' }}';
+    </script>
+ {% endblock %}
+
 {% block body %}
     {% if filtered_user is defined %}
         Showing movies added by {{ filtered_user }}  <a href="/">View all</a>
@@ -22,8 +29,17 @@
                     </div>
                     <div class="bottom">
                         <div class="rating">
-                            {{ movie.likes ?? 0 }} likes | {{ movie.hates ?? 0 }} hates
+                            <span class="likes {{ movie.votes|filter(v => v.positive and v.user == app.user)|length ? 'voted' : '' }}">{{ movie.votes|filter(v => v.positive)|length }} likes</span> |
+                            <span class="hates {{ movie.votes|filter(v => v.positive == false and v.user == app.user)|length ? 'voted' : '' }}">{{ movie.votes|filter(v => v.positive == false)|length }} hates</span>
                         </div>
+                        {% if app.user and movie.getAddedBy().id != app.user.id %}
+                            <div class="vote">
+                                <a class="positive {{ movie.votes|filter(v => v.positive and v.user == app.user)|length ? 'voted' : '' }}"
+                                   href="/vote-positive/{{ movie.id }}"> Like</a> |
+                                <a class="negative {{ movie.votes|filter(v => v.positive == false and v.user == app.user)|length ? 'voted' : '' }}"
+                                   href="/vote-negative/{{ movie.id }}"> Hate</a>
+                            </div>
+                        {% endif %}
                         <div class="posted-by">
                             Posted by <a href="/user/{{ movie.getAddedBy().id }}">{{ (app.user == null or movie.getAddedBy().id != app.user.id) ? movie.getAddedBy().getName() : 'You' }}</a>
                         </div>
@@ -41,9 +57,9 @@
             {% endif %}
             <div class="filters">
                 <div class="sort">Sort by:</div>
-                <div class="likes"><label for="likesFilter">Likes</label><input id="likesFilter" type="checkbox"/></div>
-                <div class="hates"><label for="hatesFilter">Hates</label><input id="hatesFilter" type="checkbox"/></div>
-                <div class="dates"><label for="datesFilter">Dates</label><input id="datesFilter" type="checkbox"/></div>
+                <div class="likes"><label for="likesFilter">Likes</label><input id="likesFilter" type="checkbox" {{ filter is defined and filter == 'likes' ? 'disabled' : '' }}/></div>
+                <div class="hates"><label for="hatesFilter">Hates</label><input id="hatesFilter" type="checkbox" {{ filter is defined and filter == 'hates' ? 'disabled' : '' }}/></div>
+                <div class="dates"><label for="datesFilter">Dates</label><input id="datesFilter" type="checkbox" {{ filter is not defined or filter == 'dates' ? 'disabled' : '' }} /></div>
             </div>
         </div>
     </div>

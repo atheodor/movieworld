@@ -20,4 +20,25 @@ new Vue({
     components: {App}
 })
 
-$('#datesFilter').prop('checked', true);
+switch(window.activeFilter) {
+    case 'likes':
+        $('#likesFilter').prop('checked', true);
+        break;
+    case 'hates':
+        $('#hatesFilter').prop('checked', true);
+        break;
+    default:
+        $('#datesFilter').prop('checked', true);
+}
+
+$('#likesFilter').change(function() {
+    window.location.replace("/");
+});
+
+$('#hatesFilter').change(function() {
+    window.location.replace("/");
+});
+
+$('#datesFilter').change(function() {
+    window.location.replace("/");
+});

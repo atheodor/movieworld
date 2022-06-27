@@ -4,10 +4,18 @@ namespace App\Entity;
 
 use App\Repository\VoteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
+ * Vote
+ *
+ * @ORM\Table(name="vote", uniqueConstraints={
+ *     @ORM\UniqueConstraint(columns={ "user_id", "movie_id"})
+ * })
  * @ORM\Entity(repositoryClass=VoteRepository::class)
  */
+
 class Vote
 {
     /**
@@ -19,15 +27,15 @@ class Vote
 
     /**
      * @ORM\ManyToOne(targetEntity=Movie::class, inversedBy="votes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
      */
-    private $movie_id;
+    private $movie;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="votes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $user_id;
+    private $user;
 
     /**
      * @ORM\Column(type="boolean", options={"default" : 1})
@@ -39,26 +47,26 @@ class Vote
         return $this->id;
     }
 
-    public function getMovieId(): ?Movie
+    public function getMovie(): ?Movie
     {
-        return $this->movie_id;
+        return $this->movie;
     }
 
-    public function setMovieId(?Movie $movie_id): self
+    public function setMovie(?Movie $movie): self
     {
-        $this->movie_id = $movie_id;
+        $this->movie = $movie;
 
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUser(?User $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

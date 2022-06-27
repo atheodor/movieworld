@@ -41,7 +41,7 @@ class Movie
     private $date_published;
 
     /**
-     * @ORM\OneToMany(targetEntity=Vote::class, mappedBy="movie_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Vote::class, orphanRemoval=true, fetch="EAGER", mappedBy="movie")
      */
     private $votes;
 

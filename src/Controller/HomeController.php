@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use App\Form\MovieFormType;
 use App\Entity\Movie;
+use App\Entity\Vote;
 use App\Repository\MovieRepository;
 use App\Repository\UserRepository;
+use App\Repository\VoteRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +19,12 @@ class HomeController extends AbstractController
 {
     private $movieRepository;
     private $userRepository;
+    private $voteRepository;
 
-    public function __construct(MovieRepository $movieRepository, UserRepository $userRepository){
+    public function __construct(MovieRepository $movieRepository, UserRepository $userRepository, VoteRepository  $voteRepository){
         $this->movieRepository = $movieRepository;
         $this->userRepository = $userRepository;
+        $this->voteRepository = $voteRepository;
     }
 
     /**
@@ -65,5 +71,59 @@ class HomeController extends AbstractController
             'movies' => $movies,
             'filtered_user' => $user->getName()
         ]);
+    }
+
+    /**
+     * @Route("/vote-positive/{movie_id}", name="vote_positive")
+     */
+    public function votePositive($movie_id): Response
+    {
+        $user = $this->getUser();
+        $movie = $this->movieRepository->findOneBy(array('id' => $movie_id),array());
+
+        if($user && $movie && $movie->getAddedBy() != $user){
+            $vote = $this->voteRepository->findOneBy(array('movie' => $movie, 'user' => $user),array());
+            if(!$vote){
+                $vote = new Vote();
+            } else {
+                $vote->setUser($user);
+                $vote->setMovie($movie);
+            }
+            $vote->setPositive(true);
+            try {
+                $this->voteRepository->add($vote, true);
+            } catch (\Exception $e) {
+                return $this->redirectToRoute('index');
+            }
+        }
+
+        return $this->redirectToRoute('index');
+    }
+
+    /**
+     * @Route("/vote-negative/{movie_id}", name="vote_negative")
+     */
+    public function voteNegative($movie_id): Response
+    {
+        $user = $this->getUser();
+        $movie = $this->movieRepository->findOneBy(array('id' => $movie_id),array());
+
+        if($user && $movie && $movie->getAddedBy() != $user){
+            $vote = $this->voteRepository->findOneBy(array('movie' => $movie, 'user' => $user),array());
+            if(!$vote){
+                $vote = new Vote();
+            } else {
+                $vote->setUser($user);
+                $vote->setMovie($movie);
+            }
+            $vote->setPositive(false);
+            try {
+                $this->voteRepository->add($vote, true);
+            } catch (\Exception $e) {
+                return $this->redirectToRoute('index');
+            }
+        }
+
+        return $this->redirectToRoute('index');
     }
 }

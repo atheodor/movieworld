@@ -4,9 +4,10 @@ namespace App\Form;
 
 use App\Entity\Movie;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class MovieFormType extends AbstractType
 {
@@ -15,7 +16,12 @@ class MovieFormType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('description')
-            ->add('date_published');
+            ->add('date_published', DateType::Class, array(
+                'widget' => 'choice',
+                'years' => range(date('Y'), date('Y') - 50),
+                'months' => range(date('m'), 12),
+                'days' => range(date('d'), 31),
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void

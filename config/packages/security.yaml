@@ -35,3 +35,5 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/add-movie, roles: ROLE_USER }
+         - { path: ^/vote-positive, roles: ROLE_USER }
+         - { path: ^/vote-negative, roles: ROLE_USER }

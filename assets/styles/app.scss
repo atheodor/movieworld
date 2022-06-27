@@ -78,6 +78,34 @@ body {
                     .posted-by {
                         margin-left: 10px;
                     }
+                    .rating {
+                        .likes {
+                            &.voted {
+                                color: green;
+                            }
+                        }
+                        .hates {
+                            &.voted {
+                                color: red;
+                            }
+                        }
+                    }
+                    .vote {
+                        .positive {
+                            margin-right: 5px;
+                        }
+
+                        .negative {
+                            margin-left: 5px;
+                        }
+
+                        .voted {
+                            background: dodgerblue;
+                            border-radius: 15px;
+                            padding: 5px 10px;
+                            color: white;
+                        }
+                    }
                 }
             }
         }
