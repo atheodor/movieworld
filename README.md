@@ -23,7 +23,7 @@ MovieWorld is a test application part of a technical assignment that mockups a s
 ### Steps:
 1) run `composer install`
 2) run `npm install`
-3) run `npm run watch`
+3) run `npm run build`
 4) run `docker-composer up -d`
 5) run `docker-compose exec php bin/console doctrine:migrations:migrate` to migrate the database schema
 6) project can be accessed at http://localhost:8000/
