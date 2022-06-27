@@ -85,7 +85,6 @@ class HomeController extends AbstractController
             $vote = $this->voteRepository->findOneBy(array('movie' => $movie, 'user' => $user),array());
             if(!$vote){
                 $vote = new Vote();
-            } else {
                 $vote->setUser($user);
                 $vote->setMovie($movie);
             }
@@ -112,7 +111,6 @@ class HomeController extends AbstractController
             $vote = $this->voteRepository->findOneBy(array('movie' => $movie, 'user' => $user),array());
             if(!$vote){
                 $vote = new Vote();
-            } else {
                 $vote->setUser($user);
                 $vote->setMovie($movie);
             }
