@@ -12,6 +12,7 @@ MovieWorld is a test application part of a technical assignment that mockups a s
 - Restricts Add Movie route and Vote route from unauthorized users
 - Filters movies by user
 - Voting System
+- Sort movies by likes, hates or dates
 
 ## How to use:
 ### Requirements:
