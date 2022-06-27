@@ -132,4 +132,21 @@ class Movie
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getVoteRatio(): int
+    {
+        $ratio = 0;
+        foreach ($this->votes as $vote){
+            if($vote->getPositive()){
+                $ratio++;
+            } else {
+                $ratio--;
+            }
+        }
+
+        return $ratio;
+    }
 }

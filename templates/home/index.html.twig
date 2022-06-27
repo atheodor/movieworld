@@ -5,7 +5,7 @@
  {% block javascripts %}
      {{ parent() }}
     <script>
-        const activeFilter = '{{ filter ?? 'dates' }}';
+        var activeFilter = '{{ filter ?? 'dates' }}';
     </script>
  {% endblock %}
 

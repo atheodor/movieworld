@@ -30,11 +30,22 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="app_home")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $filter = $request->query->get('filter');
         $movies = $this->movieRepository->findBy(array(), array('date_published' => 'DESC'));
+        if($filter == 'likes'){
+            usort($movies,function($first,$second){
+                return $first->getVoteRatio() < $second->getVoteRatio();
+            });
+        } elseif ($filter == 'hates'){
+            usort($movies,function($first,$second){
+                return $first->getVoteRatio() > $second->getVoteRatio();
+            });
+        }
         return $this->render('home/index.html.twig', [
-            'movies' => $movies
+            'movies' => $movies,
+            'filter' => $filter
         ]);
     }
 

@@ -32,13 +32,19 @@ switch(window.activeFilter) {
 }
 
 $('#likesFilter').change(function() {
-    window.location.replace("/");
+    $('#hatesFilter').prop('checked', false);
+    $('#datesFilter').prop('checked', false);
+    window.location.replace("/?filter=likes");
 });
 
 $('#hatesFilter').change(function() {
-    window.location.replace("/");
+    $('#likesFilter').prop('checked', false);
+    $('#datesFilter').prop('checked', false);
+    window.location.replace("/?filter=hates");
 });
 
 $('#datesFilter').change(function() {
+    $('#hatesFilter').prop('checked', false);
+    $('#likesFilter').prop('checked', false);
     window.location.replace("/");
 });
