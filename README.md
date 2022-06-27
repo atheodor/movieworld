@@ -10,6 +10,7 @@ MovieWorld is a test application part of a technical assignment that mockups a s
 - Add new Movie
 - Index Page Styled based on mockup template
 - Restricts Add Movie route from unauthorized users
+- Filters movies by user
 
 ## How to use:
 ### Requirements:

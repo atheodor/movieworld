@@ -3,6 +3,9 @@
 {% block title %}Welcome to MovieWorld!{% endblock %}
 
 {% block body %}
+    {% if filtered_user is defined %}
+        Showing movies added by {{ filtered_user }}  <a href="/">View all</a>
+    {% endif %}
     <div class="movie-count">
         Found {{ movies | length }} movies
     </div>

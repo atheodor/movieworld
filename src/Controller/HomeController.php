@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\MovieFormType;
 use App\Entity\Movie;
 use App\Repository\MovieRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     private $movieRepository;
+    private $userRepository;
 
-    public function __construct(MovieRepository $movieRepository){
+    public function __construct(MovieRepository $movieRepository, UserRepository $userRepository){
         $this->movieRepository = $movieRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -48,6 +51,19 @@ class HomeController extends AbstractController
 
         return $this->render('movies/create.html.twig',[
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/user/{id}", name="user_movies")
+     */
+    public function userMovies($id): Response
+    {
+        $movies = $this->movieRepository->findBy(array('added_by' => $id), array('date_published' => 'DESC'));
+        $user = $this->userRepository->findOneBy(array('id' => $id),array());
+        return $this->render('home/index.html.twig', [
+            'movies' => $movies,
+            'filtered_user' => $user->getName()
         ]);
     }
 }
