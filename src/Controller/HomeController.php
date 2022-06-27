@@ -88,11 +88,19 @@ class HomeController extends AbstractController
                 $vote->setUser($user);
                 $vote->setMovie($movie);
             }
-            $vote->setPositive(true);
-            try {
-                $this->voteRepository->add($vote, true);
-            } catch (\Exception $e) {
-                return $this->redirectToRoute('index');
+            if($vote->getPositive() == true){
+                try {
+                    $this->voteRepository->remove($vote);
+                } catch (\Exception $e) {
+                    return $this->redirectToRoute('index');
+                }
+            } else {
+                $vote->setPositive(true);
+                try {
+                    $this->voteRepository->add($vote, true);
+                } catch (\Exception $e) {
+                    return $this->redirectToRoute('index');
+                }
             }
         }
 
@@ -114,11 +122,19 @@ class HomeController extends AbstractController
                 $vote->setUser($user);
                 $vote->setMovie($movie);
             }
-            $vote->setPositive(false);
-            try {
-                $this->voteRepository->add($vote, true);
-            } catch (\Exception $e) {
-                return $this->redirectToRoute('index');
+            if($vote->getPositive() == false){
+                try {
+                    $this->voteRepository->remove($vote);
+                } catch (\Exception $e) {
+                    return $this->redirectToRoute('index');
+                }
+            } else {
+                $vote->setPositive(false);
+                try {
+                    $this->voteRepository->add($vote, true);
+                } catch (\Exception $e) {
+                    return $this->redirectToRoute('index');
+                }
             }
         }
 
