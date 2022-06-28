@@ -59,7 +59,7 @@
                 <div class="sort">Sort by:</div>
                 <div class="likes"><label for="likesFilter">Likes</label><input id="likesFilter" type="checkbox" {{ filter is defined and filter == 'likes' ? 'disabled' : '' }}/></div>
                 <div class="hates"><label for="hatesFilter">Hates</label><input id="hatesFilter" type="checkbox" {{ filter is defined and filter == 'hates' ? 'disabled' : '' }}/></div>
-                <div class="dates"><label for="datesFilter">Dates</label><input id="datesFilter" type="checkbox" {{ filter is not defined or filter == 'dates' ? 'disabled' : '' }} /></div>
+                <div class="dates"><label for="datesFilter">Dates</label><input id="datesFilter" type="checkbox" {{ filter is not defined or filter == 'dates' or filter == '' ? 'disabled' : '' }} /></div>
             </div>
         </div>
     </div>
